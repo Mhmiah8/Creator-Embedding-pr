@@ -25,9 +25,9 @@ class CreatorSimilarityTests(unittest.TestCase):
         self.assertGreaterEqual(results[0]["score"], results[-1]["score"])
 
     def test_precision_at_k(self) -> None:
-        retrieved = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+        retrieved_ids = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
         relevant = {"a", "d", "x"}
-        self.assertAlmostEqual(0.2, precision_at_k(retrieved, relevant, k=10))
+        self.assertAlmostEqual(0.2, precision_at_k(retrieved_ids, relevant, k=10))
 
     def test_evaluate_precision_at_10(self) -> None:
         evaluation_set = [

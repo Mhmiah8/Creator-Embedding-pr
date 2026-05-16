@@ -120,7 +120,7 @@ def precision_at_k(retrieved_ids: Iterable[str], relevant_ids: set[str], k: int 
 
 class EvaluationItem(TypedDict):
     query_bio: str
-    relevant_ids: Iterable[str]
+    relevant_ids: set[str]
 
 
 def evaluate_precision_at_10(
