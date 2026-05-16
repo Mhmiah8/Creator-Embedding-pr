@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Iterable
+from typing import Iterable, TypedDict
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -118,8 +118,13 @@ def precision_at_k(retrieved_ids: Iterable[str], relevant_ids: set[str], k: int 
     return hits / len(top_k)
 
 
+class EvaluationItem(TypedDict):
+    query_bio: str
+    relevant_ids: Iterable[str]
+
+
 def evaluate_precision_at_10(
-    engine: CreatorSimilarityEngine, evaluation_set: list[dict[str, object]]
+    engine: CreatorSimilarityEngine, evaluation_set: list[EvaluationItem]
 ) -> float:
     if not evaluation_set:
         return 0.0
