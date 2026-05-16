@@ -131,8 +131,8 @@ def evaluate_precision_at_10(
 
     scores: list[float] = []
     for item in evaluation_set:
-        query_bio = str(item["query_bio"])
-        relevant_ids = set(item["relevant_ids"])
+        query_bio = item["query_bio"]
+        relevant_ids = item["relevant_ids"]
         results = engine.search_similar_creators(query_bio, top_k=10)
         retrieved_ids = [str(result["id"]) for result in results]
         scores.append(precision_at_k(retrieved_ids, relevant_ids, k=10))
